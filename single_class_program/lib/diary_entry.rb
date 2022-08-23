@@ -16,10 +16,13 @@ class DiaryEntry
     end
   
     def count_words
+        return @contents.split.count 
       # Returns the number of words in the contents as an integer
     end
   
-    def reading_time(wpm) # wpm is an integer representing the number of words the
+    def reading_time(wpm) 
+        return (count_woords / wpm.to_f).ceil
+        # wpm is an integer representing the number of words the
                           # user can read per minute
       # Returns an integer representing an estimate of the reading time in minutes
       # for the contents at the given wpm.
