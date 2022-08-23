@@ -29,6 +29,20 @@ RSpec.describe "diary_entry" do
       expect { diary_entry.reading_time(0) }.to raise_error "error"
     end
   end
+  
+  context "first time calling reading_chunk, readable" do
+    it "returns the words the user can read." do
+      diary_entry = DiaryEntry.new("my_title", "red " * 550)
+      expect(diary_entry.reading_chunk(200, 3)).to eq "red " * 550
+    end
+  end
+
+  context "first time calling reading_chunk, unreadable" do
+    it "returns the words the user can read." do
+      diary_entry = DiaryEntry.new("my_title", "red " * 550)
+      expect(diary_entry.reading_chunk(200, 2)).to eq ("red " * 400).strip
+    end
+  end
 
 
     
