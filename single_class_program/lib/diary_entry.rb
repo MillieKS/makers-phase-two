@@ -2,6 +2,7 @@ class DiaryEntry
     def initialize(title, contents) # title, contents are strings
       @title = title
       @contents = contents
+      @tracker = 0
         # ...
     end
   
@@ -30,12 +31,15 @@ class DiaryEntry
     end
   
     def reading_chunk(wpm, minutes)
-        
-        if wpm * minutes >= count_words 
-            return @contents
-        else
-            return @contents.split[0, wpm * minutes].join(" ")
+        words_can_read = wpm * minutes
+        @tracker = 0 if count_words < @tracker 
+        if words_can_read >= count_words 
+          return @contents
+        else 
+          output = @contents.split[@tracker, words_can_read].join(" ")
+          @tracker += words_can_read
         end
+        return output
         
         # `wpm` is an integer representing the number
                                     # of words the user can read per minute
@@ -47,4 +51,4 @@ class DiaryEntry
       # what has already been read, until the contents is fully read.
       # The next call after that it should restart from the beginning.
     end
-  end
+end
