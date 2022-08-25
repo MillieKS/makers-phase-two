@@ -53,14 +53,14 @@ song_list.list # => []
 #2
 
 song_list = MusicTracker.new
-song_list.list.add("Firestone - Kygo")
+song_list.add("Firestone - Kygo")
 todo_list.list # => ["Firestone - Kygo"]
 
 #3
 
 song_list = MusicTracker.new
-song_list.list.add("Firestone - Kygo")
-song_list.list.add("Angel eyes - ABBA")
+song_list.add("Firestone - Kygo")
+song_list.add("Angel eyes - ABBA")
 todo_list.list # => ["Firestone - Kygo, "Angel eyes - ABBA""]
 
 #4
