@@ -40,9 +40,7 @@ class Todolist
     # Otherwise, returns a string reminding the user to do the task
   end
 
-  def remove
-  #removes task for list of completed
-end
+
 ```
 
 ## 3. Create Examples as Tests
