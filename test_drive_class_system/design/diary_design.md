@@ -99,12 +99,12 @@ end
 _Make a list of examples of how the class will behave in different situations._
 
 ```ruby
-# EXAMPLE
+# EXAMPLE Diary Entry
 
 # 1
 
-diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
-diary_entry.title # => "Day 1"
+diary = Diary.new
+diary.add("hello " * 50) # => "Day 1"
 diary_entry.contents # => "hello hello hello ..." 50 times
 
 #2
@@ -130,6 +130,42 @@ diary_entry.count # => 5
 diary_entry.reading_chunk(1, 2) # => returns "hello my"
 diary_entry.reading_chunk(3, 2) # => returns "hello my name"
 ```
+
+
+```ruby
+# EXAMPLE Diary Integration
+
+# 1
+diary = Diary.new
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry = DiaryEntry.new("Day 2", "hola " * 50)
+diary.add(diary_entry) # => diary << diary_entry
+diary.all # => [diary_entry]
+
+#2
+
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
+
+#3
+
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
+diary_entry.reading_time(25) # => 2
+#4
+
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
+diary_entry.reading_chunk(10, 3) # => returns "hello hello ..." times 30
+
+#5
+
+diary_entry = DiaryEntry.new("Day 1", "hello my name is Sandra")
+diary_entry.count # => 5
+diary_entry.reading_chunk(1, 2) # => returns "hello my"
+diary_entry.reading_chunk(3, 2) # => returns "hello my name"
+```
+
 
 _Encode each example as a test. You can add to the above list as you go._
 
