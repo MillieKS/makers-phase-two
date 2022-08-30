@@ -25,6 +25,7 @@ class Diary
   end
 
   def add(entry) # entry is an instance of DiaryEntry
+    @entry = entry
     # Returns nothing
   end
 
@@ -102,33 +103,32 @@ _Make a list of examples of how the class will behave in different situations._
 
 # 1
 
-todo_list = TodoList.new
-todo_list.list # => []
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.title # => "Day 1"
+diary_entry.contents # => "hello hello hello ..." 50 times
 
 #2
 
-todo_list = TodoList.new
-todo_list.list.add("Go to the gym")
-todo_list.list # => ["Go to the gym"]
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
 
 #3
 
-todo_list = TodoList.new
-todo_list.list.add("Go to the gym", "Have some cake")
-todo_list.list # => ["Go to the gym", "Have some cake"]
-
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
+diary_entry.reading_time(25) # => 2
 #4
 
-todo_list = TodoList.new
-todo_list.list.add("Go to the gym", "Have some cake")
-todo_list.complete("Go to the gym")
-todo_list.list # => ["Have some cake"]
+diary_entry = DiaryEntry.new("Day 1", "hello " * 50)
+diary_entry.count # => 50 
+diary_entry.reading_chunk(10, 3) # => returns "hello hello ..." times 30
 
 #5
 
-todo_list = TodoList.new
-todo_list.list.add("Go to the gym", "Have some cake")
-todo_list.complete("Go to the shops") # => fails "does not exist"
+diary_entry = DiaryEntry.new("Day 1", "hello my name is Sandra")
+diary_entry.count # => 5
+diary_entry.reading_chunk(1, 2) # => returns "hello my"
+diary_entry.reading_chunk(3, 2) # => returns "hello my name"
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
