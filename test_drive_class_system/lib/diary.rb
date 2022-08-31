@@ -15,12 +15,20 @@ class Diary
   end
 
   def count_words
+    return @entries.map do |x|
+      x.count_words
+    end.sum
+    # Factorised : @entries.sum(&:count_words)
     # Returns the number of words in all diary entries
     # HINT: This method should make use of the `count_words` method on DiaryEntry.
   end
 
-  def reading_time(wpm) # wpm is an integer representing
-                        # the number of words the user can read per minute
+  def reading_time(wpm) 
+    return @entries.sum do |x|
+      x.reading_time(wpm)
+    end 
+    # wpm is an integer representing
+    # the number of words the user can read per minute
     # Returns an integer representing an estimate of the reading time in minutes
     # if the user were to read all entries in the diary.
   end

@@ -17,3 +17,16 @@ RSpec.describe "diary_entry" do
       expect(diary_entry.count_words).to eq 0
     end
   end
+
+  describe "reading_time" do
+    it "returns an integer as an estimate of the reading time in minutes from wpm(200)" do
+      diary_entry = DiaryEntry.new("my_title", "red " * 550)
+      expect(diary_entry.reading_time(200)).to eq 3
+    end
+
+    it "returns error when count is 0" do
+      diary_entry = DiaryEntry.new("my_title", "red orange yellow")
+      expect { diary_entry.reading_time(0) }.to raise_error "error"
+    end
+  end
+end
