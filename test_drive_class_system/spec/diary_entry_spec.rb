@@ -29,4 +29,22 @@ RSpec.describe "diary_entry" do
       expect { diary_entry.reading_time(0) }.to raise_error "error"
     end
   end
+
+  describe "reading chunk" do
+    it "returns a number of words a reader can read withing a a certain amount of mins" do
+      diary_entry = DiaryEntry.new("my_title", "red, yellow, orange, blue")
+      expect(diary_entry.reading_chunk(2, 1)).to eq "red, yellow,"
+    end
+
+    it "return contents when wpm is greater than count_words" do
+      diary_entry = DiaryEntry.new("my_title", "red, yellow, orange, blue")
+      expect(diary_entry.reading_chunk(5, 2)).to eq "red, yellow, orange, blue"
+    end
+
+    it "return contents when wpm is greater than count_words" do
+      diary_entry = DiaryEntry.new("my_title", "red, yellow, orange, blue")
+      diary_entry.reading_chunk(1, 4)
+      expect(diary_entry.reading_chunk(1, 2)).to eq "red, yellow,"
+    end
+  end
 end
