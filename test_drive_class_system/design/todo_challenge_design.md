@@ -115,7 +115,23 @@ todo_list.incomplete # => ["Have some cake"]
 todo_list = TodoList.new
 todo_list.add("Go to the gym")
 todo_list.add("Have some cake")
-todo_list.complete("Go to the shops") # => fails "does not exist"
+todo_list.complete # => fails "none complete"
+
+#7
+
+todo_list = TodoList.new
+todo_list.add("Go to the gym")
+todo_list.add("Have some cake")
+todo_list.give_up! # => "you have given up"
+todo_list.complete # => ["Go to the gym", "Have some cake"]
+
+#8
+
+todo_list = TodoList.new
+todo_list.add("Go to the gym")
+todo_list.add("Have some cake")
+todo_list.give_up! # => "you have given up"
+todo_list.incomplete # => []
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
