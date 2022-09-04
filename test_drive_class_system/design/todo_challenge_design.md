@@ -75,34 +75,34 @@ end
 _Make a list of examples of how the class will behave in different situations._
 
 ```ruby
-# EXAMPLE
+# EXAMPLE TodoList
 
 # 1
 
 todo_list = TodoList.new
-todo_list.list # => []
+todo_list.complete # => []
 
-#2
+#2 task integrated
 
 todo_list = TodoList.new
 todo_list.add("Go to the gym")
-todo_list.list # => ["Go to the gym"]
+todo_list.task # => ["Go to the gym"]
 
 #3
 
 todo_list = TodoList.new
 todo_list.add("Go to the gym")
 todo_list.add("Have some cake")
-todo_list.list # => ["Go to the gym", "Have some cake"]
+todo_list.imcomplete # => ["Go to the gym", "Have some cake"]
 
-#4
+#4 markdone! integrated
 
 todo_list = TodoList.new
 todo_list.add("Go to the gym")
 todo_list.markdone!("Have some cake")
 todo_list.complete # => ["Have some cake"]
 
-#5
+#5 markdone! integrated
 
 todo_list = TodoList.new
 todo_list.add("Go to the gym")
@@ -132,6 +132,59 @@ todo_list.add("Go to the gym")
 todo_list.add("Have some cake")
 todo_list.give_up! # => "you have given up"
 todo_list.incomplete # => []
+
+# EXAMPLE Todo
+
+# 1
+
+todo = Todo.new()
+todo.task # => []
+
+#2
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+
+#3
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+todo.mark_done!
+todo.done? # => true
+
+#4
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+todo.done? # => false
+
+#Integrated
+
+#1
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+todo_list = TodoList.new
+todo_list.add(todo)
+todo_list.incomplete # => ["Drink some water"]
+
+#2
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+todo_list = TodoList.new
+todo_list.add(todo)
+todo_list.complete # => []
+
+#3
+
+todo = Todo.new("Drink some water")
+todo.task # => ["Drink some water"]
+todo_list = TodoList.new
+todo_list.add(todo)
+todo_list
+todo_list.complete # => []
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
